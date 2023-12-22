@@ -31,4 +31,16 @@ public class ParkingLot {
           return lot.contains(car);
     }
 
+    public double unpark_car(Car car) throws CarNotPresentException{
+          if(!lot.contains(car)){
+            throw new CarNotPresentException("Car not present in lot!");
+          }
+          else{
+            LocalTime in_time = car.get_in_time();
+            LocalTime out_time = LocalTime.now();
+            lot.remove(car);
+            return 0.0;
+          }
+    }
+
 }
