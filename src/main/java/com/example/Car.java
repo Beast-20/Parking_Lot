@@ -17,5 +17,9 @@ public class Car {
     public void set_in_time(LocalTime in_time){
         this.in_time = in_time;
     }
+
+    public LocalTime get_in_time(){
+        return in_time;
+    }
     
 }
