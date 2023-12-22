@@ -43,4 +43,8 @@ public class ParkingLot {
           }
     }
 
+    public boolean get_full_status(){
+        return cnt==capacity;
+    }
+
 }

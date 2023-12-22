@@ -15,6 +15,8 @@ public class AppTest
     ParkingLot p1 = new ParkingLot(2);
     Car car1 = new Car(100,"Red","Hyundai");
     Car car2 = new Car(101,"White","Honda");
+
+    //UC1
     @Test
     public void test_parking_car()
     {
@@ -27,6 +29,7 @@ public class AppTest
 
     }
 
+    //UC2
     @Test
     public void test_unparking_car(){
         //Unparking parked car
@@ -47,5 +50,28 @@ public class AppTest
         catch(CarNotPresentException e){
             assertEquals("Car not present in lot!",e.getMessage());
         }
+    }
+    
+    //UC3
+    @Test
+    public void check_full_status(){
+
+        //Checking status when lot is not full
+        try {
+            p1.park_car(car1);
+        } catch (ParkinglotFullException e) {
+            fail("Exception was not expected here");
+        }
+
+        assertFalse(p1.get_full_status());
+
+        //Checking status when lot is full
+        try {
+            p1.park_car(car2);
+        } catch (ParkinglotFullException e) {
+            fail("Exception was not expected here");
+        }
+
+        assertTrue(p1.get_full_status());
     }
 }
