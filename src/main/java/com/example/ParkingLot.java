@@ -42,6 +42,7 @@ public class ParkingLot {
             LocalTime in_time = car.get_in_time();
             LocalTime out_time = LocalTime.now();
             lot.remove(car);
+            cnt-=1;
             return 0.0;
           }
     }

@@ -90,4 +90,25 @@ public class AppTest
         assertTrue(u1.check_status(p1));
         
     }
+
+    //UC5(Removing Full Status)
+    @Test
+    public void check_remove_full_status(){
+        try{
+           p1.park_car(car1);
+           p1.park_car(car2);
+        }
+        catch(ParkinglotFullException e){
+            fail("Exception was not expected");
+        }
+        
+        try{
+            p1.unpark_car(car1);
+        }
+        catch(CarNotPresentException e){
+            fail("Exception was not expected here");
+        }
+
+        assertFalse(p1.get_full_status());
+    }
 }
