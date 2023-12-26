@@ -310,4 +310,18 @@ public class AppTest
     expected_ans.add("Parking Lot:- 1, Position:- 0, Car number:- 150");
     assertEquals(officer1.info_of_bmw_cars(), expected_ans);
    }
+
+   //UC15 (Get info of cars parked in last 30 mins)
+   @Test
+   public void check_get_info_based_on_time(){
+    before_each_after_uc7();
+    before_each_after_uc12();
+    PoliceOfficer officer1 = new PoliceOfficer(1, o1);
+    List<String> expected_ans = new ArrayList<>();
+    expected_ans.add("Parking Lot:- 0, Position:- 0, Car number:- 100");
+    expected_ans.add("Parking Lot:- 0, Position:- 1, Car number:- 101");
+    expected_ans.add("Parking Lot:- 1, Position:- 0, Car number:- 150");
+    expected_ans.add("Parking Lot:- 1, Position:- 1, Car number:- 161");
+    assertEquals(officer1.info_of_cars_based_on_time(), expected_ans);
+   }
 }
