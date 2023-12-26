@@ -74,4 +74,20 @@ public class AppTest
 
         assertTrue(p1.get_full_status());
     }
+
+    //UC4 (Sharing data with airport security personal)
+    @Test
+    public void check_airport_staff_action(){
+        AirportStaff u1 = new AirportStaff("Officer 1", 1);
+        try{
+            p1.park_car(car1);
+           p1.park_car(car2);
+        }
+        catch(ParkinglotFullException e){
+            fail("Exception was not expected");
+        }
+
+        assertTrue(u1.check_status(p1));
+        
+    }
 }
