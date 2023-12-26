@@ -18,13 +18,14 @@ public class ParkingLot {
         this.lot = new Car[capacity];
     }
 
-    public void park_car(Car car) throws ParkinglotFullException{
+    public void park_car(Car car,String attendant_name) throws ParkinglotFullException{
         if(cnt==capacity){
             throw new ParkinglotFullException("Parking lot is full!");
         }
         else{
             LocalTime in_time = LocalTime.now();
             car.set_in_time(in_time);
+            car.set_attendant_name(attendant_name);
             for(int i = 0;i<capacity;i++){
                 if(lot[i]==null){
                     lot[i] = car;
