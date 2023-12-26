@@ -37,7 +37,12 @@ public class ParkingLot {
     }
 
     public boolean check_car(Car car){
-          return Arrays.asList(lot).contains(car);
+          for(int i = 0;i<lot.length;i++){
+            if(lot[i]==car){
+                return true;
+            }
+          }
+          return false;
     }
 
     public double unpark_car(Car car) throws CarNotPresentException{
@@ -77,6 +82,10 @@ public class ParkingLot {
 
     public Car[] get_lot(){
         return lot;
+    }
+
+    public int get_cnt(){
+        return cnt;
     }
 
 }

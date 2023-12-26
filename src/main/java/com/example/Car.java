@@ -8,12 +8,14 @@ public class Car {
     private String company;
     private LocalTime in_time;
     private boolean is_handicap;
+    private String type;
 
-    public Car(int number, String colour, String company, boolean is_handicap){
+    public Car(int number, String colour, String company, boolean is_handicap, String type){
         this.number = number;
         this.colour = colour;
         this.company = company;
         this.is_handicap = is_handicap;
+        this.type = type;
     }
 
     public void set_in_time(LocalTime in_time){
@@ -26,6 +28,14 @@ public class Car {
 
     public boolean get_handicap_status(){
         return is_handicap;
+    }
+    
+    public String get_type(){
+        return type;
+    }
+
+    public int get_number(){
+        return number;
     }
     
 }
