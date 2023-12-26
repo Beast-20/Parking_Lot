@@ -324,4 +324,15 @@ public class AppTest
     expected_ans.add("Parking Lot:- 1, Position:- 1, Car number:- 161");
     assertEquals(officer1.info_of_cars_based_on_time(), expected_ans);
    }
+
+   //UC16 (Get info of small and handicapped)
+   @Test
+   public void check_get_info_of_small_and_handicapped(){
+    before_each_after_uc7();
+    before_each_after_uc12();
+    PoliceOfficer officer1 = new PoliceOfficer(1, o1);
+    List<String> expected_ans = new ArrayList<>();
+    expected_ans.add("Parking Lot:- 1, Position:- 1, Car number:- 161");
+    assertEquals(officer1.info_of_small_and_handicapped_cars(), expected_ans);
+   }
 }
