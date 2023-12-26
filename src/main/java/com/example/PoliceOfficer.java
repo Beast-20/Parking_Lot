@@ -1,5 +1,7 @@
 package com.example;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,21 @@ public class PoliceOfficer {
             Car[] curr_lot = lots.get(i).get_lot();
             for(int j = 0;j<curr_lot.length;j++){
                if(curr_lot[j].get_company()=="BMW"){
+                 ans.add("Parking Lot:- "+i+", Position:- "+j+", "+"Car number:- "+curr_lot[j].get_number_string());
+               }
+            }
+        }
+        return ans;
+    }
+
+    public List<String> info_of_cars_based_on_time(){
+        List<String> ans = new ArrayList<>();
+        for(int i = 0;i<lots.size();i++){
+            Car[] curr_lot = lots.get(i).get_lot();
+            for(int j = 0;j<curr_lot.length;j++){
+            Duration duration = Duration.between(LocalTime.now(),curr_lot[j].get_in_time());
+            long minutes = duration.toMinutes();
+               if(minutes<=30){
                  ans.add("Parking Lot:- "+i+", Position:- "+j+", "+"Car number:- "+curr_lot[j].get_number_string());
                }
             }
