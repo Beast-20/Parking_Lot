@@ -9,6 +9,7 @@ public class Car {
     private LocalTime in_time;
     private boolean is_handicap;
     private String type;
+    private String attendant_name;
 
     public Car(int number, String colour, String company, boolean is_handicap, String type){
         this.number = number;
@@ -38,8 +39,20 @@ public class Car {
         return number;
     }
 
+    public String get_number_string(){
+        return number+"";
+    }
+
     public String get_colour(){
         return colour;
+    }
+
+    public void set_attendant_name(String name){
+        this.attendant_name = name;
+    }
+
+    public String get_attendant_name(){
+        return attendant_name;
     }
     
 }

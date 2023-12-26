@@ -16,7 +16,7 @@ import org.junit.Test;
 public class AppTest 
 {
     ParkingLot p1 = new ParkingLot(2);
-    Car car1 = new Car(100,"Red","Hyundai",false,"Small");
+    Car car1 = new Car(100,"Blue","Hyundai",false,"Small");
     Car car2 = new Car(101,"White","Honda",false,"Small");
     Car car3 = new Car(150,"Black","Toyota",false,"Small");
     Car car4 = new Car(161,"White","Tata",true,"Small");
@@ -47,7 +47,7 @@ public class AppTest
     public void test_parking_car()
     {
         try {
-            p1.park_car(car1);
+            p1.park_car(car1,null);
             assertTrue(p1.check_car(car1));
         } catch (ParkinglotFullException e) {
             fail("Exception was not expected here");
@@ -60,7 +60,7 @@ public class AppTest
     public void test_unparking_car(){
         //Unparking parked car
         try{
-            p1.park_car(car1);
+            p1.park_car(car1,null);
             p1.unpark_car(car1);
             assertFalse(p1.check_car(car1));
         }
@@ -84,7 +84,7 @@ public class AppTest
 
         //Checking status when lot is not full
         try {
-            p1.park_car(car1);
+            p1.park_car(car1,null);
         } catch (ParkinglotFullException e) {
             fail("Exception was not expected here");
         }
@@ -93,7 +93,7 @@ public class AppTest
 
         //Checking status when lot is full
         try {
-            p1.park_car(car2);
+            p1.park_car(car2,null);
         } catch (ParkinglotFullException e) {
             fail("Exception was not expected here");
         }
@@ -106,8 +106,8 @@ public class AppTest
     public void check_airport_staff_action(){
         AirportStaff u1 = new AirportStaff("Officer 1", 1);
         try{
-            p1.park_car(car1);
-           p1.park_car(car2);
+            p1.park_car(car1,null);
+           p1.park_car(car2,null);
         }
         catch(ParkinglotFullException e){
             fail("Exception was not expected");
@@ -121,8 +121,8 @@ public class AppTest
     @Test
     public void check_remove_full_status(){
         try{
-           p1.park_car(car1);
-           p1.park_car(car2);
+           p1.park_car(car1,null);
+           p1.park_car(car2,null);
         }
         catch(ParkinglotFullException e){
             fail("Exception was not expected");
@@ -287,5 +287,16 @@ public class AppTest
     expected_ans.add("Parking Lot:- 0, Position:- 1");
     expected_ans.add("Parking Lot:- 1, Position:- 1");
     assertEquals(officer1.location_of_white_car(), expected_ans);
+   }
+
+   //UC13 (Get info of blue cars)
+   @Test
+   public void check_get_blue_car_info(){
+    before_each_after_uc7();
+    before_each_after_uc12();
+    PoliceOfficer officer1 = new PoliceOfficer(1, o1);
+    List<String> expected_ans = new ArrayList<>();
+    expected_ans.add("Parking Lot:- 0, Position:- 0, Car number:- 100, Attendant name:- a1");
+    assertEquals(officer1.info_of_blue_cars(), expected_ans);
    }
 }

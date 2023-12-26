@@ -31,7 +31,7 @@ public class ParkingAttendant {
                 }
             }
 
-            list_of_parking_lot.get(taget_lot_number).park_car(car);
+            list_of_parking_lot.get(taget_lot_number).park_car(car,name);
         }
         else{
         if(car.get_type()=="Large"){
@@ -43,12 +43,12 @@ public class ParkingAttendant {
                 target_lot = i;
                }
             }
-            list_of_parking_lot.get(target_lot).park_car(car);
+            list_of_parking_lot.get(target_lot).park_car(car,name);
         }
         else{
         for(int i = 0;i<list_of_parking_lot.size();i++){
             if(!list_of_parking_lot.get(i).get_full_status()){
-                list_of_parking_lot.get(i).park_car(car);
+                list_of_parking_lot.get(i).park_car(car,name);
                 System.out.println("Car parked "+car.get_number());
                 break;
             }
