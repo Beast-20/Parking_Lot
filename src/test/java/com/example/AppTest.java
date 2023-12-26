@@ -15,12 +15,15 @@ public class AppTest
     ParkingLot p1 = new ParkingLot(2);
     Car car1 = new Car(100,"Red","Hyundai",false);
     Car car2 = new Car(101,"White","Honda",true);
+    Car car3 = new Car(150,"Black","Toyota",false);
     Lotowner o1 = new Lotowner("Himanshu");
     ParkingAttendant attendant1 = new ParkingAttendant("a1", 1);
+    ParkingLot p2 = new ParkingLot(2);
 
     public void before_each_after_uc7(){
         o1.add_attendant(attendant1);
         o1.add_lot(p1);
+        o1.add_lot(p2);
     }
     //UC1
     @Test
@@ -178,5 +181,21 @@ public class AppTest
         }
 
         assertEquals(10.0,o1.get_account().get(car1),0.1);
+    }
+
+    //UC9 (Evenly distribute cars)
+    @Test
+    public void check_even_distribution(){
+        before_each_after_uc7();
+        try{
+            attendant1.park_car(car1);
+            attendant1.park_car(car2);
+            attendant1.park_car(car3);
+        }
+        catch(ParkinglotFullException e){
+           fail("Exception was not expected here");
+        }
+
+        assertTrue(p2.check_car(car3));
     }
 }
