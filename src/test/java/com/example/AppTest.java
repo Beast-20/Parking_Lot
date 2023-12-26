@@ -13,8 +13,10 @@ import org.junit.Test;
 public class AppTest 
 {
     ParkingLot p1 = new ParkingLot(2);
-    Car car1 = new Car(100,"Red","Hyundai");
-    Car car2 = new Car(101,"White","Honda");
+    Car car1 = new Car(100,"Red","Hyundai",false);
+    Car car2 = new Car(101,"White","Honda",true);
+    Lotowner o1 = new Lotowner("Himanshu");
+    ParkingAttendant attendant1 = new ParkingAttendant("a1", 1);
 
     //UC1
     @Test
@@ -110,5 +112,23 @@ public class AppTest
         }
 
         assertFalse(p1.get_full_status());
+    }
+
+    //UC6 (Parking Attendant parks car)
+    @Test
+    public void test_parking_attendant(){
+        o1.add_attendant(attendant1);
+        o1.add_lot(p1);
+
+        try{
+            attendant1.park_car(car1);
+            attendant1.park_car(car2);
+        }
+        catch(ParkinglotFullException e){
+           fail("Exception was not expected here");
+        }
+
+        assertTrue(p1.check_car(car1));
+        assertTrue(p1.check_car(car2));
     }
 }

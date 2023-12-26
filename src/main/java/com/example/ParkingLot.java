@@ -1,11 +1,11 @@
 package com.example;
 
 import java.time.LocalTime;
-import java.util.HashSet;
+import java.util.Arrays;
 
 public class ParkingLot {
     private int capacity;
-    private HashSet<Car> lot;
+    private Car[] lot;
     private int cnt;
     private boolean is_full;
 
@@ -14,7 +14,7 @@ public class ParkingLot {
     public ParkingLot(int capacity){
         this.cnt = 0;
         this.capacity = capacity;
-        this.lot = new HashSet<>();
+        this.lot = new Car[capacity];
     }
 
     public void park_car(Car car) throws ParkinglotFullException{
@@ -24,24 +24,34 @@ public class ParkingLot {
         else{
             LocalTime in_time = LocalTime.now();
             car.set_in_time(in_time);
-            lot.add(car);
+            for(int i = capacity-1;i>=0;i--){
+                if(lot[i]==null){
+                    lot[i] = car;
+                    break;
+                }
+            }
             cnt++;
 
         }
     }
 
     public boolean check_car(Car car){
-          return lot.contains(car);
+          return Arrays.asList(lot).contains(car);
     }
 
     public double unpark_car(Car car) throws CarNotPresentException{
-          if(!lot.contains(car)){
+          if(!Arrays.asList(lot).contains(car)){
             throw new CarNotPresentException("Car not present in lot!");
           }
           else{
             LocalTime in_time = car.get_in_time();
             LocalTime out_time = LocalTime.now();
-            lot.remove(car);
+            for(int i = 0;i<capacity;i++){
+                if(lot[i]==car){
+                    lot[i] = null;
+                    break;
+                }
+            }
             cnt-=1;
             return 0.0;
           }
