@@ -1,5 +1,6 @@
 package com.example;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Arrays;
 
@@ -53,7 +54,13 @@ public class ParkingLot {
                 }
             }
             cnt-=1;
-            return 0.0;
+            Duration duration = Duration.between(in_time, out_time);
+            long minutes = duration.toMinutes();
+            if(minutes<10){
+                minutes = 10;
+            }
+            double fare = 1.0*minutes;
+            return fare;
           }
     }
 

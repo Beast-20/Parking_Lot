@@ -26,16 +26,16 @@ public class ParkingAttendant {
         }
     }
 
-    public void unpark_car(Car car) throws CarNotPresentException{
+    public double unpark_car(Car car) throws CarNotPresentException{
         for(int i = 0;i<list_of_parking_lot.size();i++){
             if(list_of_parking_lot.get(i).check_car(car)){
-                list_of_parking_lot.get(i).unpark_car(car);
-                break;
+                return list_of_parking_lot.get(i).unpark_car(car);
             }
             if(i==list_of_parking_lot.size()-1){
                 throw new CarNotPresentException("Car not present in lot!");
             }
         }
+        return 0.0;
     }
 
     public boolean check_car(Car car){
