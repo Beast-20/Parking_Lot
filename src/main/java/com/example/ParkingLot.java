@@ -25,7 +25,7 @@ public class ParkingLot {
         else{
             LocalTime in_time = LocalTime.now();
             car.set_in_time(in_time);
-            for(int i = capacity-1;i>=0;i--){
+            for(int i = 0;i<capacity;i++){
                 if(lot[i]==null){
                     lot[i] = car;
                     break;
@@ -73,6 +73,10 @@ public class ParkingLot {
         }
 
         return is_full;
+    }
+
+    public Car[] get_lot(){
+        return lot;
     }
 
 }

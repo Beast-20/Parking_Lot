@@ -14,8 +14,9 @@ public class AppTest
 {
     ParkingLot p1 = new ParkingLot(2);
     Car car1 = new Car(100,"Red","Hyundai",false);
-    Car car2 = new Car(101,"White","Honda",true);
+    Car car2 = new Car(101,"White","Honda",false);
     Car car3 = new Car(150,"Black","Toyota",false);
+    Car car4 = new Car(161,"Blue","Tata",true);
     Lotowner o1 = new Lotowner("Himanshu");
     ParkingAttendant attendant1 = new ParkingAttendant("a1", 1);
     ParkingLot p2 = new ParkingLot(2);
@@ -197,5 +198,36 @@ public class AppTest
         }
 
         assertTrue(p2.check_car(car3));
+    }
+
+    //UC10 (Park Handicaped person's car)
+    @Test
+    public void check_parking_handicapped(){
+        before_each_after_uc7();
+        try{
+            attendant1.park_car(car1);
+            attendant1.park_car(car2);
+            attendant1.park_car(car3);
+        }
+        catch(ParkinglotFullException e){
+           fail("Exception was not expected here");
+        }
+
+        try{
+            attendant1.unpark_car(car2);
+            attendant1.unpark_car(car3);
+        }
+        catch(CarNotPresentException e){
+            fail("Exception was not expected here");
+        }
+        
+        try{
+            attendant1.park_car(car4);
+        }
+        catch(ParkinglotFullException e){
+            fail("Exception was not expected here");
+        }
+        
+       assertTrue(p2.check_car(car4));
     }
 }
