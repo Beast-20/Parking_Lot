@@ -335,4 +335,16 @@ public class AppTest
     expected_ans.add("Parking Lot:- 1, Position:- 1, Car number:- 161");
     assertEquals(officer1.info_of_small_and_handicapped_cars(), expected_ans);
    }
+
+   //UC17 (Get info of cars at particular lot)
+   @Test
+   public void check_get_info_of_cars_in_lot(){
+    before_each_after_uc7();
+    before_each_after_uc12();
+    PoliceOfficer officer1 = new PoliceOfficer(1, o1);
+    List<String> expected_ans = new ArrayList<>();
+    expected_ans.add("Position:- 0, Car number:- 100, Car colour:- Blue, Car company:- Hyundai");
+    expected_ans.add("Position:- 1, Car number:- 101, Car colour:- White, Car company:- Honda");
+    assertEquals(officer1.info_of_cars_in_lot(p1), expected_ans);
+   }
 }

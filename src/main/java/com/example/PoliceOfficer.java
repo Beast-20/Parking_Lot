@@ -81,4 +81,13 @@ public class PoliceOfficer {
         }
         return ans;
     }
+
+    public List<String> info_of_cars_in_lot(ParkingLot p){
+        List<String> ans = new ArrayList<>();
+        Car[] curr_lot = p.get_lot();
+        for(int j = 0;j<curr_lot.length;j++){
+            ans.add("Position:- "+j+", "+"Car number:- "+curr_lot[j].get_number_string()+", Car colour:- "+curr_lot[j].get_colour()+", Car company:- "+curr_lot[j].get_company());
+        }
+        return ans;
+    }
 }
