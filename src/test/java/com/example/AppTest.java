@@ -157,4 +157,26 @@ public class AppTest
 
         assertFalse(attendant1.check_car(car1));
     }
+
+    //UC8(Calculate parking fare(Minimum fare of 10 minutes))
+    @Test
+    public void check_fair(){
+        before_each_after_uc7();
+        try{
+            attendant1.park_car(car1);
+            attendant1.park_car(car2);
+        }
+        catch(ParkinglotFullException e){
+           fail("Exception was not expected here");
+        }
+
+        try{
+            o1.add_to_account(car1,attendant1.unpark_car(car1));
+        }
+        catch(CarNotPresentException e){
+            fail("Exception was not expected here!");
+        }
+
+        assertEquals(10.0,o1.get_account().get(car1),0.1);
+    }
 }
