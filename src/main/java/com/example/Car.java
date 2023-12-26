@@ -37,5 +37,9 @@ public class Car {
     public int get_number(){
         return number;
     }
+
+    public String get_colour(){
+        return colour;
+    }
     
 }

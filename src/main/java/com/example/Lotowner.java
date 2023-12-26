@@ -41,6 +41,9 @@ public class Lotowner {
     public HashMap<Car,Double> get_account(){
         return account;
     }
-
+    
+    public List<ParkingLot> give_data_to_police(){
+        return lots;
+    }
 
 }
