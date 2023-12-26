@@ -5,6 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 /**
@@ -16,7 +19,7 @@ public class AppTest
     Car car1 = new Car(100,"Red","Hyundai",false,"Small");
     Car car2 = new Car(101,"White","Honda",false,"Small");
     Car car3 = new Car(150,"Black","Toyota",false,"Small");
-    Car car4 = new Car(161,"Blue","Tata",true,"Small");
+    Car car4 = new Car(161,"White","Tata",true,"Small");
     Car car5 = new Car(165,"Yellow","Suzuki",false,"Large");
     Lotowner o1 = new Lotowner("Himanshu");
     ParkingAttendant attendant1 = new ParkingAttendant("a1", 1);
@@ -26,6 +29,18 @@ public class AppTest
         o1.add_attendant(attendant1);
         o1.add_lot(p1);
         o1.add_lot(p2);
+    }
+
+    public void before_each_after_uc12(){
+        try{
+            attendant1.park_car(car1);
+            attendant1.park_car(car2);
+            attendant1.park_car(car3);
+            attendant1.park_car(car4);
+        }
+        catch(ParkinglotFullException e){
+            System.out.println(e.getMessage());
+        }
     }
     //UC1
     @Test
@@ -260,5 +275,17 @@ public class AppTest
            fail("Exception was not expected here");
         }
         assertTrue(p2.check_car(car5));
+   }
+
+   //UC12 (Get location of all white car)
+   @Test
+   public void check_get_white_car_location(){
+    before_each_after_uc7();
+    before_each_after_uc12();
+    PoliceOfficer officer1 = new PoliceOfficer(1, o1);
+    List<String> expected_ans = new ArrayList<>();
+    expected_ans.add("Parking Lot:- 0, Position:- 1");
+    expected_ans.add("Parking Lot:- 1, Position:- 1");
+    assertEquals(officer1.location_of_white_car(), expected_ans);
    }
 }
