@@ -18,6 +18,10 @@ public class AppTest
     Lotowner o1 = new Lotowner("Himanshu");
     ParkingAttendant attendant1 = new ParkingAttendant("a1", 1);
 
+    public void before_each_after_uc7(){
+        o1.add_attendant(attendant1);
+        o1.add_lot(p1);
+    }
     //UC1
     @Test
     public void test_parking_car()
@@ -130,5 +134,27 @@ public class AppTest
 
         assertTrue(p1.check_car(car1));
         assertTrue(p1.check_car(car2));
+    }
+
+    //UC7 (Car owner wants to go home)
+    @Test
+    public void test_owner_goes_home(){
+       before_each_after_uc7();
+       try{
+            attendant1.park_car(car1);
+            attendant1.park_car(car2);
+        }
+        catch(ParkinglotFullException e){
+           fail("Exception was not expected here");
+        }
+
+        try{
+            attendant1.unpark_car(car1);
+        }
+        catch(CarNotPresentException e){
+            fail("Exception was not expected here!");
+        }
+
+        assertFalse(attendant1.check_car(car1));
     }
 }
