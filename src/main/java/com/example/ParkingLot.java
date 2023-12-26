@@ -5,8 +5,11 @@ import java.util.HashSet;
 
 public class ParkingLot {
     private int capacity;
-    HashSet<Car> lot;
-    int cnt;
+    private HashSet<Car> lot;
+    private int cnt;
+    private boolean is_full;
+
+
 
     public ParkingLot(int capacity){
         this.cnt = 0;
@@ -39,12 +42,20 @@ public class ParkingLot {
             LocalTime in_time = car.get_in_time();
             LocalTime out_time = LocalTime.now();
             lot.remove(car);
+            cnt-=1;
             return 0.0;
           }
     }
 
     public boolean get_full_status(){
-        return cnt==capacity;
+        if(cnt==capacity){
+            is_full = true;
+        }
+        else{
+            is_full = false;
+        }
+
+        return is_full;
     }
 
 }
