@@ -38,4 +38,17 @@ public class PoliceOfficer {
         }
         return ans;
     }
+
+    public List<String> info_of_bmw_cars(){
+        List<String> ans = new ArrayList<>();
+        for(int i = 0;i<lots.size();i++){
+            Car[] curr_lot = lots.get(i).get_lot();
+            for(int j = 0;j<curr_lot.length;j++){
+               if(curr_lot[j].get_company()=="BMW"){
+                 ans.add("Parking Lot:- "+i+", Position:- "+j+", "+"Car number:- "+curr_lot[j].get_number_string());
+               }
+            }
+        }
+        return ans;
+    }
 }

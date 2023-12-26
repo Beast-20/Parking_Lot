@@ -54,5 +54,9 @@ public class Car {
     public String get_attendant_name(){
         return attendant_name;
     }
+
+    public String get_company(){
+        return company;
+    }
     
 }

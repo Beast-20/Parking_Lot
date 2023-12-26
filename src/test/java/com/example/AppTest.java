@@ -18,7 +18,7 @@ public class AppTest
     ParkingLot p1 = new ParkingLot(2);
     Car car1 = new Car(100,"Blue","Hyundai",false,"Small");
     Car car2 = new Car(101,"White","Honda",false,"Small");
-    Car car3 = new Car(150,"Black","Toyota",false,"Small");
+    Car car3 = new Car(150,"Black","BMW",false,"Small");
     Car car4 = new Car(161,"White","Tata",true,"Small");
     Car car5 = new Car(165,"Yellow","Suzuki",false,"Large");
     Lotowner o1 = new Lotowner("Himanshu");
@@ -298,5 +298,16 @@ public class AppTest
     List<String> expected_ans = new ArrayList<>();
     expected_ans.add("Parking Lot:- 0, Position:- 0, Car number:- 100, Attendant name:- a1");
     assertEquals(officer1.info_of_blue_cars(), expected_ans);
+   }
+
+   //UC14 (Get info of all BMW parked)
+   @Test
+   public void check_get_bmw_car_info(){
+    before_each_after_uc7();
+    before_each_after_uc12();
+    PoliceOfficer officer1 = new PoliceOfficer(1, o1);
+    List<String> expected_ans = new ArrayList<>();
+    expected_ans.add("Parking Lot:- 1, Position:- 0, Car number:- 150");
+    assertEquals(officer1.info_of_bmw_cars(), expected_ans);
    }
 }
